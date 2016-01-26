@@ -11,7 +11,7 @@ python -m SimpleHTTPServer
 ```
 
 ## Polymer with flux?
-Polymer is a framework for creating web components.  It let's you sling data around your app all willy-nilly because Polymer's concern is not with building stateful applications.  But we do want to build entire apps using Polymer!  So we need to decide on a sane method of housing and manipulating our application's state.
+Polymer is a framework for creating web components.  It lets you sling data around your app all willy-nilly because Polymer's concern is not with building stateful applications.  But we do want to build entire apps using Polymer!  So we need to decide on a sane method of housing and manipulating our application's state– Polymer does not solve this issue on its own.
 
 Flux is where the sanity begins.  "Flux" simply refers to a _pattern_ for managing state within your application.  It was pioneered by Facebook and is used broadly in the React ecosystem.  There are several libraries that implement all the fluxy machinery necessary for use in a web application.  Usually these libraries are small, partially because flux is simple.
 
