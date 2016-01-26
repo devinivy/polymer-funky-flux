@@ -1,0 +1,59 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/funk/funk.html">
+<link rel="import" href="../actions/index.html">
+
+<script>
+Polymer({
+
+    is: 'product-store',
+
+    behaviors: [
+        Funk.StoreBehavior
+    ],
+
+    properties: {
+
+        storeName: {
+            type: String,
+            value: 'products',
+            readOnly: true
+        },
+
+        all: {
+            type: Object,
+            value: function () {
+                return {};
+            },
+            notify: true
+        },
+
+        list: {
+            type: Array,
+            value: function () {
+                return [];
+            },
+            notify: true
+        }
+
+    },
+
+    funkListenables: Actions,
+
+    onReceiveProducts: function(products) {
+
+        this.all = this.arrayToCollection(products);
+
+        var allIds = Object.keys(this.all);
+        this.deriveList('list', 'all', allIds);
+    },
+
+    onAddToCart: function(productId) {
+
+        var product = this.get(['all', productId]);
+        var inventory = product.inventory > 0 ? product.inventory - 1 : 0;
+
+        this.set(['all', productId, 'inventory'], inventory);
+    }
+
+});
+</script>

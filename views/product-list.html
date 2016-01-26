@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/funk/funk.html">
+<link rel="import" href="../css/ui-kit-styles.min.html">
+<link rel="import" href="product-item.html">
+
+<dom-module id="product-list">
+    <template>
+        <style include="ui-kit-styles"></style>
+        <div class="shop-wrap">
+            <h2 class="uk-h2">Flux Shop Demo (Polymer/Funk/Reflux)</h2>
+            <div>
+                <template is="dom-repeat" items="[[state.products.list]]" as="product">
+                    <product-item product="[[product]]"></product-item>
+                </template>
+            </div>
+        </div>
+    </template>
+</dom-module>
+
+<script>
+Polymer({
+
+    is: 'product-list',
+
+    behaviors: [
+        Funk.ViewBehavior
+    ]
+
+});
+</script>

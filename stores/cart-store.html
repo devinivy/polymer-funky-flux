@@ -1,0 +1,99 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/funk/funk.html">
+<link rel="import" href="../actions/index.html">
+
+<script>
+Polymer({
+
+    is: 'cart-store',
+
+    behaviors: [
+        Funk.StoreBehavior
+    ],
+
+    properties: {
+
+        storeName: {
+            type: String,
+            value: 'cart',
+            readOnly: true
+        },
+
+        items: {
+            type: Array,
+            value: function () {
+                return [];
+            },
+            notify: true
+        },
+
+        total: {
+            type: Number,
+            value: 0,
+            computed: '_total(items.*)',
+            notify: true
+        },
+
+        _itemsIndices: {
+            type: Object,
+            value: function () {
+                return {};
+            }
+        }
+
+    },
+
+    funkListenables: Actions,
+
+    onAddToCart: function (productId) {
+
+        var product = this.state.products.all[productId];
+
+        if (!product) {
+            return;
+        }
+
+        var index = this._itemsIndices[productId];
+
+        if (typeof index !== 'undefined') {
+            var item = this.items[index];
+            this.set(['items', index, 'quantity'], item.quantity + 1);
+        } else {
+
+            this.push('items', {
+                id: productId,
+                title: product.title,
+                quantity: 1,
+                price: product.price
+            });
+
+            this._itemsIndices[productId] = this.items.length - 1;
+        };
+    },
+
+    onCartCheckout: function () {
+
+        this.items = [];
+        this._itemsIndices = {};
+    },
+
+    onFinishCheckout: function (products) {
+
+        console.log('YOU BOUGHT:', products);
+    },
+
+    _total: function () {
+
+        var total = 0;
+
+        var item;
+        for (var i = 0; i < this.items.length; i++) {
+            item = this.items[i];
+            total += item.price * item.quantity;
+        }
+
+        return total.toFixed(2);
+    }
+
+});
+</script>

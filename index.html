@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Smell My Finger</title>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="actions/index.html">
+    <link rel="import" href="views/product-list.html">
+    <link rel="import" href="views/shopping-cart.html">
+    <link rel="import" href="stores/cart-store.html">
+    <link rel="import" href="stores/product-store.html">
+    <style>
+      product-list {
+        max-width: 900px;
+        width: 60%;
+        margin: 20px 25px;
+      }
+      shopping-cart {
+        position: fixed;
+        right: 50px;
+        top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <cart-store></cart-store>
+    <product-store></product-store>
+
+    <product-list></product-list>
+    <shopping-cart></shopping-cart>
+
+    <script>
+      WebAPIUtils.getAllProducts();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/funk/funk.html">
+<link rel="import" href="../css/ui-kit-styles.min.html">
+<link rel="import" href="../actions/index.html">
+
+<dom-module id="product-item">
+    <template>
+        <style include="ui-kit-styles"></style>
+        <div class="uk-panel uk-panel-box uk-margin-bottom">
+            <img class="uk-thumbnail uk-thumbnail-mini uk-align-left" src$="[[product.image]]" />
+            <h4 class="uk-h4">[[product.title]] - &euro;[[product.price]]</h4>
+            <button class="uk-button uk-button-small uk-button-primary"
+                on-tap="_addToCart"
+                disabled$="[[!_hasInventory(product.inventory)]]">
+                [[_buttonText(product.inventory)]]
+            </button>
+        </div>
+    </template>
+</dom-module>
+
+<script>
+Polymer({
+
+    is: 'product-item',
+
+    properties: {
+
+        product: {
+            type: Object
+        }
+
+    },
+
+    _addToCart: function() {
+
+        Actions.addToCart(this.product.id);
+    },
+
+    _hasInventory: function(inventoryCount) {
+
+        return inventoryCount > 0;
+    },
+
+    _buttonText: function(inventoryCount) {
+
+        return this._hasInventory(inventoryCount) ? 'Add to cart' : 'Sold Out';
+    }
+
+});
+</script>

@@ -1,0 +1,29 @@
+{
+  "name": "polymer-funky-flux",
+  "version": "0.0.0",
+  "authors": [
+    "Devin Ivy <devin@bigroomstudios.com>"
+  ],
+  "description": "A demo of Polymer getting funky with Reflux",
+  "main": "index.html",
+  "keywords": [
+    "polymer",
+    "flux",
+    "reflux",
+    "funk",
+    "state",
+    "data-binding"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/devinivy/polymer-funky-flux",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "funk": "^1.0.0",
+    "polymer": "^1.2.0",
+    "webcomponentsjs": "^0.7.0"
+  }
+}

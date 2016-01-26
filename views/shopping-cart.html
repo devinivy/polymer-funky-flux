@@ -1,0 +1,59 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/funk/funk.html">
+<link rel="import" href="../css/ui-kit-styles.min.html">
+<link rel="import" href="../actions/index.html">
+
+<dom-module id="shopping-cart">
+    <template>
+        <style include="ui-kit-styles"></style>
+        <div class="cart uk-panel uk-panel-box uk-panel-box-primary">
+            <div class="uk-badge uk-margin-bottom">Your Cart</div>
+            <div class="uk-margin-small-bottom">
+                <div hidden$="[[hasProducts]]">Please add some products to cart.</div>
+                <template is="dom-repeat" items="[[state.cart.items]]" as="item">
+                    <div>[[item.title]] - &euro;[[item.price]] x [[item.quantity]]</div>
+                </template>
+            </div>
+            <div class="uk-margin-small-bottom">Total: &euro;[[state.cart.total]]</div>
+            <button class="uk-button uk-button-large uk-button-success uk-align-right"
+                on-tap="_checkoutTapped"
+                disabled$="[[!hasProducts]]">
+                Checkout
+            </button>
+        </div>
+    </template>
+</dom-module>
+
+<script>
+Polymer({
+
+    is: 'shopping-cart',
+
+    behaviors: [
+        Funk.ViewBehavior
+    ],
+
+    properties: {
+
+        hasProducts: {
+            type: Number,
+            computed: '_computeHasProducts(state.cart.items.length)'
+        }
+
+    },
+
+    _checkoutTapped: function() {
+
+        if (!this.hasProducts) {
+            return;
+        }
+
+        Actions.cartCheckout(this.state.cart.items);
+    },
+
+    _computeHasProducts: function(length) {
+
+        return !!length;
+    }
+});
+</script>

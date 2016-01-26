@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/funk/funk.html">
+<link rel="import" href="../api/shop.html">
+
+<script>
+
+var Actions = Funk.Reflux.createActions([
+    'receiveProducts',
+    'addToCart',
+    'cartCheckout',
+    'finishCheckout'
+]);
+
+var WebAPIUtils = {
+    getAllProducts: function () {
+        Shop.getProducts(function (products) {
+            Actions.receiveProducts(products);
+        });
+    },
+
+    checkoutProducts: function (products) {
+        Shop.buyProducts(products, function () {
+            Actions.finishCheckout(products);
+        });
+    }
+};
+
+Actions.cartCheckout.listen(function (products) {
+    WebAPIUtils.checkoutProducts(products);
+});
+
+</script>
