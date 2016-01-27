@@ -5,8 +5,10 @@
 
 <dom-module id="product-list">
     <template>
-        <style include="ui-kit-styles"></style>
-        <div class="shop-wrap">
+        <style include="ui-kit-styles">
+            :host { display: block; }
+        </style>
+        <div>
             <h2 class="uk-h2">Flux Shop Demo (Polymer/Funk/Reflux)</h2>
             <div>
                 <template is="dom-repeat" items="[[state.products.list]]" as="product">

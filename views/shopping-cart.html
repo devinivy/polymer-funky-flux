@@ -5,8 +5,10 @@
 
 <dom-module id="shopping-cart">
     <template>
-        <style include="ui-kit-styles"></style>
-        <div class="cart uk-panel uk-panel-box uk-panel-box-primary">
+        <style include="ui-kit-styles">
+            :host { display: block; }
+        </style>
+        <div class="uk-panel uk-panel-box uk-panel-box-primary">
             <div class="uk-badge uk-margin-bottom">Your Cart</div>
             <div class="uk-margin-small-bottom">
                 <div hidden$="[[hasProducts]]">Please add some products to cart.</div>
