@@ -1,13 +1,19 @@
 <html>
     <head>
         <title>A Polymer flux-comparison demo</title>
+
+        <!-- Web components shims except Shadow DOM -->
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        <link rel="import" href="css/ui-kit-styles.html">
+
+        <!-- HTML imports used directly in this file -->
+        <link rel="import" href="css/ui-kit-styles.min.html">
         <link rel="import" href="actions/index.html">
         <link rel="import" href="views/product-list.html">
         <link rel="import" href="views/shopping-cart.html">
         <link rel="import" href="stores/cart-store.html">
         <link rel="import" href="stores/product-store.html">
+
+        <!-- Include UIkit and style the main components -->
         <style is="custom-style" include="ui-kit-styles">
             product-list {
                 max-width: 900px;
@@ -20,20 +26,25 @@
                 top: 30px;
             }
         </style>
+
     </head>
     <body>
 
-        <!-- Include stores -->
+        <!-- Declare state stores -->
         <cart-store></cart-store>
         <product-store></product-store>
 
-        <!-- Include views -->
+        <!-- Display views -->
         <product-list></product-list>
         <shopping-cart></shopping-cart>
 
         <script>
-            // Fetch all products!
-            WebAPIUtils.getAllProducts();
+            // Wait for components to upgrade...
+            document.addEventListener('WebComponentsReady', function(e) {
+
+                // ... then fetch all products!
+                WebAPIUtils.getAllProducts();
+            });
         </script>
 
     </body>
