@@ -1,0 +1,37 @@
+{
+  "name": "yarn-state-behavior",
+  "version": "0.3.0",
+  "keywords": [
+    "web-components",
+    "polymer"
+  ],
+  "license": "MIT",
+  "description": "Polymer v1 cross-component state",
+  "authors": [
+    "Devin Ivy <devin@bigroomstudios.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yarn-co/yarn-state-behavior.git"
+  },
+  "main": "yarn-state-behavior.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#~1.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+    "test-fixture": "polymerelements/test-fixture#^1.0.0",
+    "web-component-tester": "*",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/yarn-co/yarn-state-behavior",
+  "_release": "0.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.0",
+    "commit": "8806c4e8cf54fbcf2a914de91fab86c5ac3a18e3"
+  },
+  "_source": "git://github.com/yarn-co/yarn-state-behavior.git",
+  "_target": "~0.3.0",
+  "_originalSource": "yarn-co/yarn-state-behavior"
+}
