@@ -3,11 +3,18 @@
 
 <script>
 
+// Define the main actions of the app, indicating
+// if each action's result is asynchronous.
+
 var Actions = Funk.Reflux.createActions({
     getProducts: { asyncResult: true },
     addToCart: {},
     cartCheckout: { asyncResult: true }
 });
+
+
+// When the getProducts action is called, try to obtain the products
+// then fire one of its async child actions: failed or completed.
 
 Actions.getProducts.listen(function() {
 
@@ -20,6 +27,10 @@ Actions.getProducts.listen(function() {
         self.completed(products);
     });
 });
+
+
+// When the cartCheckout action is called, try to purchase the products
+// then fire one of its async child actions: failed or completed.
 
 Actions.cartCheckout.listen(function(products) {
 

@@ -7,6 +7,7 @@ Polymer({
 
     is: 'cart-store',
 
+    // Tie this component into the Polymer app as a Reflux store
     behaviors: [
         Funk.StoreBehavior
     ],
@@ -43,8 +44,10 @@ Polymer({
 
     },
 
+    // This store can listen to any of our actions
     funkListenables: Actions,
 
+    // addToCart action subscriber
     onAddToCart: function (productId) {
 
         var product = this.state.products.all[productId];
@@ -71,6 +74,7 @@ Polymer({
         };
     },
 
+    // cartCheckout.completed action subscriber
     onCartCheckoutCompleted: function (products) {
 
         console.log('Totaling', this.total, 'you bought,');

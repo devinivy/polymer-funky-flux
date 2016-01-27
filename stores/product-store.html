@@ -7,6 +7,7 @@ Polymer({
 
     is: 'product-store',
 
+    // Tie this component into the Polymer app as a Reflux store
     behaviors: [
         Funk.StoreBehavior
     ],
@@ -37,8 +38,10 @@ Polymer({
 
     },
 
+    // This store can listen to any of our actions
     funkListenables: Actions,
 
+    // getProducts.completed action subscriber
     onGetProductsCompleted: function(products) {
 
         this.all = this.arrayToCollection(products);
@@ -47,6 +50,7 @@ Polymer({
         this.deriveList('list', 'all', allIds);
     },
 
+    // addToCart action subscriber
     onAddToCart: function(productId) {
 
         var product = this.get(['all', productId]);
