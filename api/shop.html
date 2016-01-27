@@ -20,7 +20,7 @@ var Shop = Shop || {};
     Shop.getProducts = function (cb, timeout) {
         timeout = timeout || TIMEOUT;
         setTimeout(function () {
-            cb(internals.products);
+            cb(null, internals.products);
         }, timeout);
     };
 

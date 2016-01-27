@@ -3,29 +3,34 @@
 
 <script>
 
-var Actions = Funk.Reflux.createActions([
-    'receiveProducts',
-    'addToCart',
-    'cartCheckout',
-    'finishCheckout'
-]);
+var Actions = Funk.Reflux.createActions({
+    getProducts: { asyncResult: true },
+    addToCart: {},
+    cartCheckout: { asyncResult: true }
+});
 
-var WebAPIUtils = {
-    getAllProducts: function () {
-        Shop.getProducts(function (products) {
-            Actions.receiveProducts(products);
-        });
-    },
+Actions.getProducts.listen(function() {
 
-    checkoutProducts: function (products) {
-        Shop.buyProducts(products, function () {
-            Actions.finishCheckout(products);
-        });
-    }
-};
+    var self = this;
 
-Actions.cartCheckout.listen(function (products) {
-    WebAPIUtils.checkoutProducts(products);
+    Shop.getProducts(function(err, products) {
+        if (err) {
+            return self.failed(err, products);
+        }
+        self.completed(products);
+    });
+});
+
+Actions.cartCheckout.listen(function(products) {
+
+    var self = this;
+
+    Shop.buyProducts(products, function(err) {
+        if (err) {
+            return self.failed(err);
+        }
+        self.completed();
+    });
 });
 
 </script>

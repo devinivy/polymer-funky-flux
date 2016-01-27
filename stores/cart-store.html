@@ -71,15 +71,13 @@ Polymer({
         };
     },
 
-    onCartCheckout: function () {
+    onCartCheckoutCompleted: function (products) {
+
+        console.log('Totaling', this.total, 'you bought,');
+        console.table(this.items);
 
         this.items = [];
         this._itemsIndices = {};
-    },
-
-    onFinishCheckout: function (products) {
-
-        console.log('YOU BOUGHT:', products);
     },
 
     _total: function () {
