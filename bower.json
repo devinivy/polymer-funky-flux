@@ -25,5 +25,9 @@
     "funk": "^1.0.0",
     "polymer": "^1.2.0",
     "webcomponentsjs": "^0.7.0"
+  },
+  "devDependencies": {
+    "test-fixture": "polymerelements/test-fixture#^1.0.0",
+    "web-component-tester": "*"
   }
 }

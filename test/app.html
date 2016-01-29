@@ -1,0 +1,64 @@
+<html>
+  <head>
+
+    <title>polymer-funky-flux tests</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+
+    <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
+
+    <link rel="import" href="../actions/index.html">
+    <link rel="import" href="../stores/cart-store.html">
+    <link rel="import" href="../stores/product-store.html">
+
+  </head>
+  <body>
+
+    <test-fixture id="stores">
+      <template>
+        <cart-store></cart-store>
+        <product-store></product-store>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('polymer-funky-flux', function() {
+
+        var CartStore;
+        var ProductStore;
+
+        setup(function() {
+
+          var stores = fixture('stores');
+          CartStore = stores[0];
+          ProductStore = stores[1];
+        });
+
+        test('initializes to having three products.', function(done) {
+
+          Actions.getProducts();
+
+          Actions.getProducts.failed.listen(function() {
+            done(new Error('Actions.getProducts() failed.'));
+          });
+
+          Actions.getProducts.completed.listen(function() {
+            expect(Object.keys(ProductStore.all)).to.deep.equal(['1', '2', '3']);
+            expect(ProductStore.list.length).to.equal(3);
+            done();
+          });
+        });
+
+      });
+
+    </script>
+
+  </body>
+</html>
