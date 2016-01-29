@@ -3,7 +3,7 @@ A [flux-comparison](https://github.com/voronianski/flux-comparison) demo using P
 
 ## Give it a whirl!
 
-Check it out on the web [here]( http://devinivy.github.io/polymer-funky-flux/) or install locally and hack away!
+Check it out on the web [here](http://devinivy.github.io/polymer-funky-flux/) or install locally and hack away!
 ```sh
 git clone git@github.com:devinivy/polymer-funky-flux.git
 cd polymer-funky-flux
@@ -27,8 +27,11 @@ Together this means Reflux both feels familiar to Polymer developers and also in
 
 Reflux and Polymer look pretty darn good together!
 
+## Testing
+Evaluating how actions are interpreted by stores is one good way to test your application.  Check out the `test` folder to see how to test an app built on Polymer and Reflux.  The tests can be run right before your eyes by navigating [here](http://devinivy.github.io/polymer-funky-flux/test).
+
 ## More info
  - [Funk](https://github.com/reflux/refluxjs/blob/master/README.md) ties Reflux and Polymer together
  - The [Refluxjs readme](https://github.com/reflux/refluxjs/blob/master/README.md) provides good documentation and examples of using Reflux
  - The defacto [flux overview](https://facebook.github.io/flux/docs/overview.html) by Facebook explains the core mechanics of flux– note that they refer to their own implementation of flux (which is not Reflux)
- - Facebook [explains](http://www.infoq.com/news/2014/05/facebook-mvc-flux) why they dropped MVC for flux
+ - Facebook [explains](https://youtu.be/nYkdrAPrdcw?t=7m17s) why they dropped MVC for flux
