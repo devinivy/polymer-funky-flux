@@ -1,0 +1,104 @@
+<html>
+  <head>
+
+    <title>polymer-funky-flux tests</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+
+    <link rel="import" href="../actions/index.html">
+    <link rel="import" href="../stores/cart-store.html">
+    <link rel="import" href="../stores/product-store.html">
+
+  </head>
+  <body>
+
+    <cart-store></cart-store>
+    <product-store></product-store>
+
+    <script>
+      suite('polymer-funky-flux', function() {
+
+        var CartStore = document.querySelector('cart-store');
+        var ProductStore = document.querySelector('product-store');
+        var unregisterFns;
+
+        setup(function() {
+
+          unregisterFns = [];
+        });
+
+        teardown(function() {
+
+          // Unregister all listeners from past tests
+          for (var i = 0; i < unregisterFns.length; i++) {
+            unregisterFns[i]();
+          }
+        });
+
+        test('Actions.getProducts() initializes product store.', function(done) {
+
+          var failed = Actions.getProducts.failed.listen(function() {
+            done(new Error('Actions.getProducts() failed.'));
+          });
+
+          var completed = Actions.getProducts.completed.listen(function() {
+            expect(Object.keys(ProductStore.all)).to.deep.equal(['1', '2', '3']);
+            expect(ProductStore.list.length).to.equal(3);
+            done();
+          });
+
+          unregisterFns = [failed, completed];
+
+          Actions.getProducts();
+        });
+
+        test('Actions.addToCart() changes item inventory and items in cart store.', function(done) {
+
+          expect(CartStore.total).to.equal('0.00');
+          expect(CartStore.items).to.deep.equal([]);
+          expect(ProductStore.all[2].inventory).to.equal(10);
+
+          Actions.addToCart(2);
+          Actions.addToCart(1);
+
+          setTimeout(function() {
+            expect(CartStore.total).to.equal('511.00');
+            expect(CartStore.items.length).to.equal(2);
+            expect(CartStore.items[0].id).to.equal(2);
+            expect(CartStore.items[1].id).to.equal(1);
+            expect(ProductStore.all[2].inventory).to.equal(9);
+            expect(ProductStore.all[1].inventory).to.equal(1);
+            done();
+          }, 0);
+        });
+
+        test('Actions.cartCheckout() clears the cart store.', function(done) {
+
+          var failed = Actions.cartCheckout.failed.listen(function() {
+            done(new Error('Actions.cartCheckout() failed.'));
+          });
+
+          var completed = Actions.cartCheckout.completed.listen(function() {
+            expect(CartStore.total).to.equal('0.00');
+            expect(CartStore.items.length).to.equal(0);
+            done();
+          });
+
+          unregisterFns = [failed, completed];
+
+          Actions.cartCheckout();
+        });
+
+      });
+
+    </script>
+
+  </body>
+</html>
