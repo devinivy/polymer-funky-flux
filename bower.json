@@ -1,6 +1,6 @@
 {
   "name": "polymer-funky-flux",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "authors": [
     "Devin Ivy <devin@bigroomstudios.com>"
   ],
@@ -22,8 +22,8 @@
     "bower_components"
   ],
   "dependencies": {
-    "funk": "^1.0.0",
-    "polymer": "^1.2.0",
+    "funk": "^1.1.0",
+    "polymer": "^1.4.0",
     "webcomponentsjs": "^0.7.0"
   },
   "devDependencies": {

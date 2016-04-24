@@ -31,7 +31,7 @@ Reflux and Polymer look pretty darn good together!
 Evaluating how actions are interpreted by stores is one good way to test your application.  Check out the `test` folder to see how to test an app built on Polymer and Reflux.  The tests can be run right before your eyes by navigating [here](http://devinivy.github.io/polymer-funky-flux/test).
 
 ## More info
- - [Funk](https://github.com/reflux/refluxjs/blob/master/README.md) ties Reflux and Polymer together
+ - [Funk](https://github.com/devinivy/funk) ties Reflux and Polymer together
  - The [Refluxjs readme](https://github.com/reflux/refluxjs/blob/master/README.md) provides good documentation and examples of using Reflux
  - The defacto [flux overview](https://facebook.github.io/flux/docs/overview.html) by Facebook explains the core mechanics of flux– note that they refer to their own implementation of flux (which is not Reflux)
  - Facebook [explains](https://youtu.be/nYkdrAPrdcw?t=7m17s) why they dropped MVC for flux
