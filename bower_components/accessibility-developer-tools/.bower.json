@@ -34,7 +34,7 @@
     "tag": "v2.10.0",
     "commit": "1a46baa0c53becec01f1892eeb2d70afbf2b060a"
   },
-  "_source": "git://github.com/GoogleChrome/accessibility-developer-tools.git",
+  "_source": "https://github.com/GoogleChrome/accessibility-developer-tools.git",
   "_target": "^2.10.0",
   "_originalSource": "accessibility-developer-tools"
 }

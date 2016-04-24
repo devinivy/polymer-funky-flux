@@ -1,6 +1,6 @@
 {
   "name": "yarn-state-behavior",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "keywords": [
     "web-components",
     "polymer"
@@ -16,7 +16,7 @@
   },
   "main": "yarn-state-behavior.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#~1.2.0"
+    "polymer": "Polymer/polymer#>=1.2.0 <1.5.0"
   },
   "devDependencies": {
     "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
@@ -25,11 +25,11 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   },
   "homepage": "https://github.com/yarn-co/yarn-state-behavior",
-  "_release": "0.3.0",
+  "_release": "0.3.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.0",
-    "commit": "8806c4e8cf54fbcf2a914de91fab86c5ac3a18e3"
+    "tag": "v0.3.1",
+    "commit": "7578680f557387b121b9770d8d3b73e8588db010"
   },
   "_source": "git://github.com/yarn-co/yarn-state-behavior.git",
   "_target": "~0.3.0",

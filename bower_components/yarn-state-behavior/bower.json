@@ -1,6 +1,6 @@
 {
   "name": "yarn-state-behavior",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "keywords": [
     "web-components",
     "polymer"
@@ -16,7 +16,7 @@
   },
   "main": "yarn-state-behavior.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#~1.2.0"
+    "polymer": "Polymer/polymer#>=1.2.0 <1.5.0"
   },
   "devDependencies": {
     "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
