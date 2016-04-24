@@ -20,6 +20,24 @@ Polymer({
             readOnly: true
         },
 
+        // A Funk collection (an id-keyed object) of cart items
+        all: {
+            type: Object,
+            value: function () {
+                return {};
+            }
+        },
+
+        // The list of cart item ids that should appear in the cart
+        itemIds: {
+            type: Array,
+            value: function () {
+                return [];
+            },
+            notify: true
+        },
+
+        // The list of cart items that should appear in the cart, managed using deriveDynList()
         items: {
             type: Array,
             value: function () {
@@ -33,19 +51,16 @@ Polymer({
             value: 0,
             computed: '_total(items.*)',
             notify: true
-        },
-
-        _itemsIndices: {
-            type: Object,
-            value: function () {
-                return {};
-            }
         }
 
     },
 
     // This store can listen to any of our actions
     funkListenables: Actions,
+
+    ready: function () {
+        this.deriveDynList('items', 'all', 'itemIds');
+    },
 
     // addToCart action subscriber
     onAddToCart: function (productId) {
@@ -56,22 +71,20 @@ Polymer({
             return;
         }
 
-        var index = this._itemsIndices[productId];
+        var item = this.all[productId];
 
-        if (typeof index !== 'undefined') {
-            var item = this.items[index];
-            this.set(['items', index, 'quantity'], item.quantity + 1);
-        } else {
+        if (item) {
+            return this.set(['all', productId, 'quantity'], item.quantity + 1);
+        }
 
-            this.push('items', {
-                id: productId,
-                title: product.title,
-                quantity: 1,
-                price: product.price
-            });
+        this.set(['all', productId], {
+            id: productId,
+            title: product.title,
+            quantity: 1,
+            price: product.price
+        });
 
-            this._itemsIndices[productId] = this.items.length - 1;
-        };
+        this.push('itemIds', productId);
     },
 
     // cartCheckout.completed action subscriber
@@ -80,8 +93,8 @@ Polymer({
         console.log('Totaling', this.total, 'you bought,');
         console.table(this.items);
 
-        this.items = [];
-        this._itemsIndices = {};
+        this.itemIds = [];
+        this.all = {};
     },
 
     _total: function () {
